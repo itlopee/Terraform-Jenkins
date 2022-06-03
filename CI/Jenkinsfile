@@ -4,9 +4,6 @@ pipeline
 
     stages
     {
-    
-
-        
         stage('clean workspace') {
             steps {
                 cleanWs()
@@ -37,8 +34,6 @@ pipeline
                 {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding'])
                     {
-                        
-                        
                           sh "terraform init"
                           sh "terraform validate"
                           sh "terraform plan -out plan -var function_version=${RELEASE_NAME}"
@@ -60,7 +55,7 @@ pipeline
                 {
                       sh """
                       . \$(poetry env info --path)/bin/activate
-                      AWS_DEFAULT_REGION=eu-west-1 pytest -v ./tests
+                      AWS_DEFAULT_REGION=eu-west-3 pytest -v ./tests
                       """
                 }
             }
