@@ -1,0 +1,8 @@
+NOM;SUBNET;SERVICES;SECURITY_GROUP;PUBLIC_IP
+MACHINE-ADMIN;<##INFRA_NAME##>-subadm;NULL.sh;SG-ADMIN;true
+
+MACHINE-RPROXY;<##INFRA_NAME##>-subadm;install_rproxy.sh;SG-RPROXY;true
+
+MACHINE-WEB1;<##INFRA_NAME##>-priv1;install_web.sh;SG-WEB;false
+MACHINE-WEB2;<##INFRA_NAME##>-priv2;install_web.sh;SG-WEB;false
+MACHINE-WEB3;<##INFRA_NAME##>-priv3;install_web.sh;SG-WEB;false
