@@ -29,21 +29,21 @@ pipeline
         {
             when
             {
-                branch 'master'
+                branch 'main'
             }
             steps
             {
                 dir('terraform deploy')
                 {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'noprod-nssdcn-products-core-aws']])
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding'])
                     {
                         
-                        {
+                        
                           sh "terraform init"
                           sh "terraform validate"
                           sh "terraform plan -out plan -var function_version=${RELEASE_NAME}"
                           sh "terraform apply -input=false plan"
-                        }
+                        
                     }
                 }
             }
@@ -52,7 +52,7 @@ pipeline
         {
             when
             {
-                branch 'master'
+                branch 'main'
             }
             steps
             {
